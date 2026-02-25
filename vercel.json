@@ -8,39 +8,16 @@
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+      "config": { "distDir": "build" }
     }
   ],
-  "rewrites": [
-    {
-      "source": "/health",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/auth/:path*",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/posts/:path*",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/comments/:path*",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/likes/:path*",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/users/:path*",
-      "destination": "/backend/index.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/frontend/build/index.html"
-    }
+  "routes": [
+    { "src": "/health", "dest": "/backend/index.js" },
+    { "src": "/auth(.*)", "dest": "/backend/index.js" },
+    { "src": "/posts(.*)", "dest": "/backend/index.js" },
+    { "src": "/comments(.*)", "dest": "/backend/index.js" },
+    { "src": "/likes(.*)", "dest": "/backend/index.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/frontend/build/index.html" }
   ]
 }
