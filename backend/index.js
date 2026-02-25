@@ -49,15 +49,15 @@ app.get("/health", (req, res) => res.json({ status: "ok" }));
 
 const db = require("./models");
 
-db.sequelize.sync().then(() => {
-    // ✅ For Vercel, we export the app instead of listening here
-    
-    // app.listen(3001, () => {
-    //     console.log("Server running on port 3001");
-    // });
-}).catch(err => {
-    console.error("DB sync failed:", err);
-});
+// ✅ Sync DB and start server
+
+// db.sequelize.sync().then(() => {
+//     app.listen(3001, () => {
+//         console.log("Server running on port 3001");
+//     });
+// }).catch(err => {
+//     console.error("DB sync failed:", err);
+// });
 
 // ✅ Export for Vercel serverless
 module.exports = app;
