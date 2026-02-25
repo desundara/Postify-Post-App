@@ -19,8 +19,23 @@
       "dest": "/backend/index.js"
     },
     {
-      "src": "/(auth|posts|comments|likes)(.*)",
+      "src": "/auth(.*)",
       "dest": "/backend/index.js"
+    },
+    {
+      "src": "/posts(.*)",
+      "dest": "/backend/index.js"
+    },
+    {
+      "src": "/comments(.*)",
+      "dest": "/backend/index.js"
+    },
+    {
+      "src": "/likes(.*)",
+      "dest": "/backend/index.js"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
