@@ -13,33 +13,31 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/health",
-      "dest": "/backend/index.js"
+      "source": "/health",
+      "destination": "/backend/index.js"
     },
     {
-      "src": "/auth(.*)",
-      "dest": "/backend/index.js"
+      "source": "/auth/:path*",
+      "destination": "/backend/index.js"
     },
     {
-      "src": "/posts(.*)",
-      "dest": "/backend/index.js"
+      "source": "/posts/:path*",
+      "destination": "/backend/index.js"
     },
     {
-      "src": "/comments(.*)",
-      "dest": "/backend/index.js"
+      "source": "/comments/:path*",
+      "destination": "/backend/index.js"
     },
     {
-      "src": "/likes(.*)",
-      "dest": "/backend/index.js"
+      "source": "/likes/:path*",
+      "destination": "/backend/index.js"
     },
+
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/build/index.html"
+      "source": "/(.*)",
+      "destination": "/frontend/build/index.html"
     }
   ]
 }
