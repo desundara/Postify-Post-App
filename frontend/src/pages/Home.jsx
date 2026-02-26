@@ -14,7 +14,7 @@ function Home() {
     if (!localStorage.getItem("accessToken")) {
       navigate("/login");
     } else {
-      axios.get(`${process.env.REACT_APP_API_URL}/posts`, {
+      axios.get(`${API_URL}/posts`, {
         headers: { accessToken: localStorage.getItem("accessToken") }
       })
       .then((response) => {
@@ -31,7 +31,7 @@ function Home() {
 
   const likePost = (postId) => {
     axios.post(
-      `${process.env.REACT_APP_API_URL}/likes`,
+      `${API_URL}/likes`,
       { PostId: postId },
       { headers: { accessToken: localStorage.getItem("accessToken") } }
     ).then((response) => {

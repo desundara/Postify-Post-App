@@ -19,7 +19,7 @@ function CreatePost() {
   });
 
   const onSubmit = (data, { resetForm, setSubmitting, setStatus }) => {
-    axios.post(`${process.env.REACT_APP_API_URL}/posts`, data, {
+    axios.post(`${API_URL}/posts`, data, {
       headers: { accessToken: localStorage.getItem("accessToken") },
     })
     .then(() => { resetForm(); navigate("/"); })

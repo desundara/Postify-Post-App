@@ -16,7 +16,7 @@ function Login() {
     setError("");
     setLoading(true);
 
-    axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { username, password })
+    axios.post(`${API_URL}/auth/login`, { username, password })
       .then((response) => {
         if (response.data.error) {
           setError(response.data.error);
@@ -35,17 +35,17 @@ function Login() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center animate-fade-in">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-brand-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <span className="text-white font-display font-bold text-xl">P</span>
+        <div className="mb-8 text-center">
+          <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 shadow-lg rounded-2xl bg-brand-600">
+            <span className="text-xl font-bold text-white font-display">P</span>
           </div>
-          <h1 className="font-display font-extrabold text-2xl text-gray-900 dark:text-white">Welcome back</h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Sign in to your account</p>
+          <h1 className="text-2xl font-extrabold text-gray-900 font-display dark:text-white">Welcome back</h1>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Sign in to your account</p>
         </div>
 
-        <div className="card bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800 p-8 shadow-sm">
+        <div className="p-8 bg-white border-gray-100 shadow-sm card dark:bg-gray-900 dark:border-gray-800">
           {error && (
-            <div className="mb-5 px-4 py-3 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm font-body">
+            <div className="px-4 py-3 mb-5 text-sm text-red-600 border border-red-200 rounded-xl bg-red-50 dark:bg-red-950/30 dark:border-red-800 dark:text-red-400 font-body">
               {error}
             </div>
           )}
@@ -58,7 +58,7 @@ function Login() {
                 placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="input-field bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                className="text-gray-900 placeholder-gray-400 border-gray-200 input-field bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
@@ -69,14 +69,14 @@ function Login() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                className="text-gray-900 placeholder-gray-400 border-gray-200 input-field bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500"
                 required
               />
             </div>
-            <button type="submit" disabled={loading} className="btn-primary mt-2 py-3 w-full text-base">
+            <button type="submit" disabled={loading} className="w-full py-3 mt-2 text-base btn-primary">
               {loading ? (
-                <span className="flex items-center gap-2 justify-center">
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                <span className="flex items-center justify-center gap-2">
+                  <span className="w-4 h-4 border-2 rounded-full border-white/30 border-t-white animate-spin"></span>
                   Signing in...
                 </span>
               ) : 'Sign In'}
@@ -84,9 +84,9 @@ function Login() {
           </form>
         </div>
 
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-5">
+        <p className="mt-5 text-sm text-center text-gray-500 dark:text-gray-400">
           Don't have an account?{' '}
-          <Link to="/registration" className="text-brand-600 dark:text-brand-400 font-display font-medium hover:underline">
+          <Link to="/registration" className="font-medium text-brand-600 dark:text-brand-400 font-display hover:underline">
             Sign up
           </Link>
         </p>

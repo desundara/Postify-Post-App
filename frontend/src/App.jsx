@@ -14,6 +14,11 @@ import { useTheme } from './helpers/ThemeContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// ✅ FIX: Use relative path so it works on both localhost and Vercel
+// On Vercel, frontend and backend share the same domain, so /api/... works directly.
+// REACT_APP_API_URL should be empty string in .env.production
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Navbar({ authState, logout }) {
   const { theme, toggleTheme } = useTheme();
 
@@ -95,7 +100,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      axios.get(`${process.env.REACT_APP_API_URL}/auth/auth`, { headers: { accessToken: token } })
+      // ✅ FIX: Use API_URL variable (empty string in production = relative path)
+      axios.get(`${API_URL}/auth/auth`, { headers: { accessToken: token } })
         .then(res => {
           if (!res.data.error) {
             setAuthState({ username: res.data.username, id: res.data.id, status: true, loading: false });

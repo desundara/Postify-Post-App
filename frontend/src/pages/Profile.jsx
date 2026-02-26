@@ -16,8 +16,8 @@ function Profile() {
     setLoading(true);
     setError(null);
     Promise.all([
-      axios.get(`${process.env.REACT_APP_API_URL}/auth/basicinfo/${id}`),
-      axios.get(`${process.env.REACT_APP_API_URL}/posts/byUserId/${id}`)
+      axios.get(`${API_URL}/auth/basicinfo/${id}`),
+      axios.get(`${API_URL}/posts/byUserId/${id}`)
     ])
     .then(([userRes, postsRes]) => {
       setUsername(userRes.data.username);

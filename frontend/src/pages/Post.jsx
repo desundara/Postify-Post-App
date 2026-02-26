@@ -14,8 +14,8 @@ function Post() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`${process.env.REACT_APP_API_URL}/posts/byId/${id}`),
-      axios.get(`${process.env.REACT_APP_API_URL}/comments/${id}`)
+      axios.get(`${API_URL}/posts/byId/${id}`),
+      axios.get(`${API_URL}/comments/${id}`)
     ])
     .then(([postRes, commentsRes]) => {
       setPostObject(postRes.data);
@@ -30,7 +30,7 @@ function Post() {
     const token = localStorage.getItem("accessToken");
     if (!token) { alert("Please login first!"); return; }
 
-    axios.post(`${process.env.REACT_APP_API_URL}/comments`,
+    axios.post(`${API_URL}/comments`,
       { commentText: newComment, postId: id },
       { headers: { accessToken: token } }
     )
@@ -47,7 +47,7 @@ function Post() {
 
   const deleteComment = (commentId) => {
     if (!window.confirm("Delete this comment?")) return;
-    axios.delete(`${process.env.REACT_APP_API_URL}/comments/${commentId}`, {
+    axios.delete(`${API_URL}/comments/${commentId}`, {
       headers: { accessToken: localStorage.getItem("accessToken") }
     })
     .then(() => setComments(comments.filter((c) => c.id !== commentId)))
@@ -56,7 +56,7 @@ function Post() {
 
   const deletePost = (postId) => {
     if (!window.confirm("Delete this post?")) return;
-    axios.delete(`${process.env.REACT_APP_API_URL}/posts/${postId}`, {
+    axios.delete(`${API_URL}/posts/${postId}`, {
       headers: { accessToken: localStorage.getItem("accessToken") }
     })
     .then(() => navigate("/"))
@@ -67,15 +67,15 @@ function Post() {
     if (option === "title") {
       const newTitle = prompt("Enter New Title:");
       if (!newTitle?.trim()) return;
-      axios.post(`${process.env.REACT_APP_API_URL}/posts/title`,
+      axios.post(`${API_URL}/posts/title`,
         { newTitle, id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       ).then(() => setPostObject({ ...postObject, title: newTitle }))
-       .catch(() => alert("Failed to update title"));
+        .catch(() => alert("Failed to update title"));
     } else {
       const newPostText = prompt("Enter New Text:");
       if (!newPostText?.trim()) return;
-      axios.post(`${process.env.REACT_APP_API_URL}/posts/postText`,
+      axios.post(`${API_URL}/posts/postText`,
         { newText: newPostText, id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       ).then(() => setPostObject({ ...postObject, postText: newPostText }))
