@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../helpers/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function CreatePost() {
   const navigate = useNavigate();
   const { authState } = useContext(AuthContext);

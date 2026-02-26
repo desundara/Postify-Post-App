@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Post() {
   const { id } = useParams();
   const [postObject, setPostObject] = useState({});

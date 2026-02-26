@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../helpers/AuthContext';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);

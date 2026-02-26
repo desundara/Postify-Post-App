@@ -11,6 +11,8 @@ function Login() {
   const { setAuthState } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const API_URL = process.env.REACT_APP_API_URL || '';
+
   const login = (e) => {
     e.preventDefault();
     setError("");

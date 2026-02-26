@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Registration() {
   const navigate = useNavigate();
 

@@ -12,6 +12,8 @@ function Profile() {
   const navigate = useNavigate();
   const { authState } = useContext(AuthContext);
 
+  const API_URL = process.env.REACT_APP_API_URL || '';
+
   useEffect(() => {
     setLoading(true);
     setError(null);
