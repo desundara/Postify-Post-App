@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../helpers/AuthContext';
 
+// ✅ FIX: Moved outside component
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,8 +13,6 @@ function Login() {
   const [error, setError] = useState("");
   const { setAuthState } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const API_URL = process.env.REACT_APP_API_URL || '';
 
   const login = (e) => {
     e.preventDefault();

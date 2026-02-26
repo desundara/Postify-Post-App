@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../helpers/AuthContext';
 
+// ✅ FIX: Moved outside component so useEffect doesn't need it as a dependency
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 function Profile() {
   const { id } = useParams();
   const [username, setUsername] = useState("");
@@ -11,8 +14,6 @@ function Profile() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { authState } = useContext(AuthContext);
-
-  const API_URL = process.env.REACT_APP_API_URL || '';
 
   useEffect(() => {
     setLoading(true);
